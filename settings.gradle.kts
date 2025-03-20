@@ -16,6 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
@@ -23,3 +24,5 @@ rootProject.name = "multi-module-courses"
 include(":app")
 include(":common")
 include(":data")
+include(":onboarding")
+include(":theme")

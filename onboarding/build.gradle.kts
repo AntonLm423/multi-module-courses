@@ -1,26 +1,11 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "ru.antonlm.multimodulecourses"
-
-    defaultConfig {
-        applicationId = "ru.antonlm.multimodulecourses"
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
+    namespace = "ru.antonlm.onboarding"
 }
 
 dependencies {
@@ -29,8 +14,6 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":theme"))
 
-    implementation(project(":onboarding"))
-
     // android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -38,15 +21,13 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // navigation
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
-
-
     // retrofit + gson
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.gson)
+
+    // adapter delegates
+    implementation(libs.adapterdelegates)
 
     // dagger
     implementation(libs.dagger)

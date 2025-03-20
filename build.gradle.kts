@@ -41,6 +41,10 @@ fun BaseExtension.baseConfig() {
             jvmTarget = "21"
         }
     }
+
+    viewBinding {
+        enable = true
+    }
 }
 
 /**

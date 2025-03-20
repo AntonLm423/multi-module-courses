@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MultiModuleCourse" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">@color/custom_white</item>
+
+        <item name="android:statusBarColor">@color/dark</item>
+
+        <item name="materialButtonStyle">@style/Button.Primary.NoInsets</item>
+    </style>
+</resources>
