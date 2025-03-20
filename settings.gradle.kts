@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "multi-module-courses"
 include(":app")
 include(":common")
+include(":data")

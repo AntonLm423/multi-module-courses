@@ -16,6 +16,9 @@ retrofit = "2.11.0"
 browser = "1.8.0"
 pagingCommonAndroid = "3.3.6"
 pagingRuntimeKtx = "3.3.6"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +48,9 @@ chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "ch
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

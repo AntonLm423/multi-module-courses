@@ -24,12 +24,21 @@ android {
 }
 
 dependencies {
+    // modules
+    implementation(project(":common"))
+    implementation(project(":data"))
+
     // android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // retrofit + gson
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.gson)
 
     // dagger
     implementation(libs.dagger)
