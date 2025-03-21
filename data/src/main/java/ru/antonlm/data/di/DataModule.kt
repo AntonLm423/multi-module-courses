@@ -1,5 +1,6 @@
 package ru.antonlm.data.di
 
+import android.app.Application
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -57,7 +58,7 @@ internal class DataModule {
     /** Local */
     @Provides
     @Singleton
-    fun providePreferenceStorage(context: Context, gson: Gson): PreferenceStorage {
-        return PreferenceStorage(context, defaultPrefs(context), gson)
+    fun providePreferenceStorage(context: Application, gson: Gson): PreferenceStorage {
+        return PreferenceStorage(defaultPrefs(context), gson)
     }
 }

@@ -2,6 +2,8 @@ package ru.antonlm.multimodulecourses
 
 import android.app.Application
 import ru.antonlm.multimodulecourses.di.DaggerAppComponent
+import ru.antonlm.multimodulecourses.di.MainActivityComponentDepsStore
+import ru.antonlm.onboarding.di.OnboardingComponentDepsStore
 
 class App : Application() {
 
@@ -12,8 +14,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        appComponent.apply {
-            // TODO: Add deps
+        appComponent.let {
+            OnboardingComponentDepsStore.deps = it
+            MainActivityComponentDepsStore.deps = it
         }
     }
 

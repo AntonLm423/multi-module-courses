@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="custom_white">#F2F2F3</color>
+    <color name="custom_white_50">#50F2F2F3</color>
     <color name="dark">#151515</color>
     <color name="green">#12B956</color>
     <color name="stroke">#4D555E</color>

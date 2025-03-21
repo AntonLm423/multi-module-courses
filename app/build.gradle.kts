@@ -30,6 +30,7 @@ dependencies {
     implementation(project(":theme"))
 
     implementation(project(":onboarding"))
+    implementation(project(":auth"))
 
     // android
     implementation(libs.androidx.core.ktx)
@@ -41,7 +42,6 @@ dependencies {
     // navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
-
 
     // retrofit + gson
     implementation(libs.retrofit)

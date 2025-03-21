@@ -26,12 +26,18 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.gson)
 
+    // navigation
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+
     // adapter delegates
     implementation(libs.adapterdelegates)
 
     // dagger
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     kapt(libs.daggerCompiler)
     kapt(libs.dagger.android.processor)
 }

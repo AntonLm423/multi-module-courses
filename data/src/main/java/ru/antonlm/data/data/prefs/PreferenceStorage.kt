@@ -7,12 +7,19 @@ import javax.inject.Inject
 
 
 class PreferenceStorage @Inject constructor(
-    private val context: Context,
     private val prefs: SharedPreferences,
     private val gson: Gson
 ) {
 
     companion object {
         private const val PREF_USER = "PREF_USER"
+        private const val PREF_IS_ONBOARDING_SHOWN = "PREF_IS_ONBOARDING_SHOWN"
     }
+
+    var isOnboardingShown: Boolean = false
+        get() = prefs[PREF_IS_ONBOARDING_SHOWN, false] ?: false
+        set(value) {
+            prefs[PREF_IS_ONBOARDING_SHOWN] = value
+            field = value
+        }
 }

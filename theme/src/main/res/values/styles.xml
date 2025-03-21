@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Text -->
     <style name="TextAppearance.Headline" parent="@style/TextAppearance.MaterialComponents.Headline4">
         <item name="android:textColor">@color/custom_white</item>
         <item name="android:lineSpacingExtra">8sp</item>
     </style>
 
+    <style name="TextAppearance.TitleMedium" parent="@style/TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/custom_white</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="TextAppearance.ButtonSmall" parent="@style/TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/custom_white</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+    </style>
+
+    <!-- Buttons -->
     <style name="Button.Primary.NoInsets" parent="@style/Widget.Material3.Button">
         <item name="android:insetBottom">0dp</item>
         <item name="android:insetTop">0dp</item>
@@ -13,4 +26,16 @@
         <item name="android:insetRight">0dp</item>
     </style>
 
+    <!-- Inputs -->
+    <style name="TextInputEditText" />
+
+    <style name="TextInputEditText.Primary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColorHint">@color/custom_white_50</item>
+        <item name="android:textColor">@color/custom_white</item>
+        <item name="android:backgroundTint">@color/dark_gray</item>
+    </style>
 </resources>

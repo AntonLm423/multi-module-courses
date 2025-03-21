@@ -1,17 +1,23 @@
 package ru.antonlm.common.ui
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import ru.antonlm.common.extensions.addSystemWindowInsetToMargin
 import ru.antonlm.common.utils.BottomNavigationViewVisibilityManager
+
 
 abstract class BaseFragment : Fragment() {
 
@@ -60,17 +66,47 @@ abstract class BaseFragment : Fragment() {
         (requireActivity() as? BottomNavigationViewVisibilityManager)?.setBottomNavigationViewVisible(isVisible)
     }
 
-    /** Извлечение аргументов */
-    protected open fun handleArguments() {}
 
-    /** Вызывать методы вью модели, которые получают данные из репозиториев */
-    protected open fun initOperations(savedInstanceState: Bundle?) {}
+    /**
+     * Chrome tabs
+     */
+    private val CHROME_STABLE_PACKAGE = "com.android.chrome"
 
-    /** Установка верстки фрагмента */
-    protected open fun onSetupLayout(savedInstanceState: Bundle?) {}
+    protected fun openChromeTabsIntent(uri: Uri, ) {
+        try {
+            val builder = CustomTabsIntent.Builder()
 
-    /** Подписки на State/LiveData */
-    protected open fun onSubscribeViewModel() {}
+            val colorSchemeParams = CustomTabColorSchemeParams.Builder()
+                .build()
+            builder.setDefaultColorSchemeParams(colorSchemeParams)
+            val customTabsIntent = builder.build()
+            if (chromeAppIsInstalled(requireContext())) {
+                customTabsIntent.intent.setPackage(CHROME_STABLE_PACKAGE)
+            }
+            customTabsIntent.launchUrl(requireContext(), uri)
+        } catch (e: Exception) {
+            when (e) {
+                is ActivityNotFoundException -> {
+                    val browserIntent = Intent(Intent.ACTION_VIEW, uri)
+                    startActivity(browserIntent)
+                }
+
+                else -> {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    private fun chromeAppIsInstalled(context: Context): Boolean {
+        return try {
+            val pm = context.packageManager
+            pm.getApplicationInfo(CHROME_STABLE_PACKAGE, PackageManager.GET_META_DATA)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
 
     /**
      * Keyboard listener
@@ -121,7 +157,16 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    protected inline fun <T> LiveData<T>.observe(crossinline block: (T) -> Unit) {
-        observe(viewLifecycleOwner, Observer { t -> block.invoke(t) })
-    }
+    /** Извлечение аргументов */
+    protected open fun handleArguments() {}
+
+    /** Вызывать методы вью модели, которые получают данные из репозиториев */
+    protected open fun initOperations(savedInstanceState: Bundle?) {}
+
+    /** Установка верстки фрагмента */
+    protected open fun onSetupLayout(savedInstanceState: Bundle?) {}
+
+    /** Подписки на State/LiveData */
+    protected open fun onSubscribeViewModel() {}
+
 }

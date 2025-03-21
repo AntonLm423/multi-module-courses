@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_title">Вход</string>
+    <string name="email_title">Email</string>
+    <string name="email_hint">example@gmail.com</string>
+    <string name="password_title">Пароль</string>
+    <string name="password_hint">Введите пароль</string>
+    <string name="button_sign_in_title">Вход</string>
+    <string name="to_registration">Нет аккаунта? Регистрация</string>
+    <string name="registration">Регистрация</string>
+    <string name="restore_password">Забыл пароль</string>
+
+    <string name="vk_link">https://vk.com/</string>
+    <string name="ok_link">https://ok.ru/</string>
+</resources>

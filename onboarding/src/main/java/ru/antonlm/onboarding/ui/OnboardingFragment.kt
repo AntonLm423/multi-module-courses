@@ -1,11 +1,17 @@
 package ru.antonlm.onboarding.ui
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.MeasureSpec
 import android.view.ViewGroup
 import androidx.core.view.updatePadding
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
@@ -15,13 +21,23 @@ import ru.antonlm.common.ui.BaseFragment
 import ru.antonlm.data.domain.models.DisplayableItem
 import ru.antonlm.onboarding.R
 import ru.antonlm.onboarding.databinding.FragmentOnboardingBinding
-import java.sql.Time
-import java.util.Date
-import kotlin.random.Random
+import ru.antonlm.onboarding.di.OnboardingComponentViewModule
+import javax.inject.Inject
 
 class OnboardingFragment : BaseFragment() {
 
     private val binding get() = viewBinding as FragmentOnboardingBinding
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<OnboardingViewModel> { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        ViewModelProvider(this)
+            .get<OnboardingComponentViewModule>()
+            .onboardingComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentOnboardingBinding.inflate(inflater, container, false)
@@ -30,6 +46,10 @@ class OnboardingFragment : BaseFragment() {
 
     override fun onSetupLayout(savedInstanceState: Bundle?) {
         createLines()
+        binding.buttonContinue.setOnClickListener {
+            viewModel.markOnboardingShown()
+            navigateToAuth()
+        }
     }
 
     private fun createLines() {
@@ -68,6 +88,12 @@ class OnboardingFragment : BaseFragment() {
 
         // TODO: Think about better solution
         z = if (technologies.any { it.angle != Angle.DEFAULT }) 1f else 10f
+    }
+
+    private fun navigateToAuth() {
+        val link = getString(ru.antonlm.common.R.string.deep_link_auth)
+        val uri = Uri.parse(link)
+        findNavController().navigate(uri)
     }
 
     private companion object {
