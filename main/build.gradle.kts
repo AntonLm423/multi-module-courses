@@ -1,37 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "ru.antonlm.multimodulecourses"
-
-    defaultConfig {
-        applicationId = "ru.antonlm.multimodulecourses"
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
+    namespace = "ru.antonlm.main"
 }
 
 dependencies {
-    // modules
     implementation(project(":common"))
     implementation(project(":data"))
     implementation(project(":theme"))
-
-    implementation(project(":onboarding"))
-    implementation(project(":auth"))
-    implementation(project(":main"))
 
     // android
     implementation(libs.androidx.core.ktx)
@@ -40,18 +20,23 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // navigation
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
-
     // retrofit + gson
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.gson)
 
+    // navigation
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+
+    // adapter delegates
+    implementation(libs.adapterdelegates)
+
     // dagger
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     kapt(libs.daggerCompiler)
     kapt(libs.dagger.android.processor)
 }

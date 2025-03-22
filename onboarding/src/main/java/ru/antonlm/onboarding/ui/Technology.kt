@@ -3,7 +3,7 @@ package ru.antonlm.onboarding.ui
 import androidx.annotation.StringRes
 import ru.antonlm.data.domain.models.DisplayableItem
 
-data class Technology(val titleResId: Int, val angle: Angle, val bias: Bias) : DisplayableItem {
+internal data class Technology(val titleResId: Int, val angle: Angle, val bias: Bias) : DisplayableItem {
 
     companion object {
         fun normal(@StringRes titleResId: Int) =
@@ -24,15 +24,15 @@ data class Technology(val titleResId: Int, val angle: Angle, val bias: Bias) : D
 }
 
 /**
- * Угол смещения
+ * Offset angle
  */
-enum class Angle(val degree: Float) {
+internal enum class Angle(val degree: Float) {
     DEFAULT(degree = 0f),
     CLOCKWISE(degree = -15f),
     COUNTERCLOCKWISE(degree = 15f)
 }
 
 /**
- * Смещение относительно ряда
+ * Offset relative to the row
  */
-enum class Bias { TOP, NO, BOTTOM }
+internal enum class Bias { TOP, NO, BOTTOM }

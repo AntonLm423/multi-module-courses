@@ -1,5 +1,6 @@
 package ru.antonlm.common.ui
 
+import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -14,6 +15,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import ru.antonlm.common.extensions.addSystemWindowInsetToMargin
 import ru.antonlm.common.utils.BottomNavigationViewVisibilityManager
@@ -66,13 +69,30 @@ abstract class BaseFragment : Fragment() {
         (requireActivity() as? BottomNavigationViewVisibilityManager)?.setBottomNavigationViewVisible(isVisible)
     }
 
+    /**
+     * Dialogs
+     */
+    protected var loadingDialog: LoadingDialog? = null
+
+    protected fun showLoadingDialog() {
+        if(loadingDialog != null) return
+
+        loadingDialog = LoadingDialog().also {
+            it.show(parentFragmentManager, LoadingDialog::class.java.name)
+        }
+    }
+
+    protected fun dismissLoadingDialog() {
+        loadingDialog?.dismiss()
+        loadingDialog = null
+    }
 
     /**
      * Chrome tabs
      */
     private val CHROME_STABLE_PACKAGE = "com.android.chrome"
 
-    protected fun openChromeTabsIntent(uri: Uri, ) {
+    protected fun openChromeTabsIntent(uri: Uri) {
         try {
             val builder = CustomTabsIntent.Builder()
 
@@ -169,4 +189,10 @@ abstract class BaseFragment : Fragment() {
     /** Подписки на State/LiveData */
     protected open fun onSubscribeViewModel() {}
 
+    /**
+     * LiveData ext
+     */
+    protected inline fun <T> LiveData<T>.observe(crossinline block: (T) -> Unit) {
+        observe(viewLifecycleOwner, Observer { t -> block.invoke(t) })
+    }
 }

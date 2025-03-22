@@ -9,6 +9,9 @@ android {
 }
 
 dependencies {
+    // module
+    implementation(project(":theme"))
+
     // android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -3,21 +3,20 @@ package ru.antonlm.multimodulecourses.ui
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.antonlm.common.domain.UserStatus
 import ru.antonlm.common.extensions.safeNavigate
 import ru.antonlm.common.utils.BottomNavigationViewVisibilityManager
 import ru.antonlm.multimodulecourses.R
+import ru.antonlm.multimodulecourses.appComponent
 import ru.antonlm.multimodulecourses.databinding.ActivityMainBinding
-import ru.antonlm.multimodulecourses.di.MainActivityComponentViewModule
+import ru.antonlm.multimodulecourses.di.AppComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), BottomNavigationViewVisibilityManager {
@@ -26,16 +25,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationViewVisibilityManager 
     private val binding get() = viewBinding as ActivityMainBinding
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<MainViewModel> { viewModelFactory }
+    lateinit var viewModel: MainActivityViewModel
 
     private var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewModelProvider(this)
-            .get<MainActivityComponentViewModule>()
-            .mainActivityComponent.inject(this)
+         appComponent.inject(this)
 
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -43,9 +39,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationViewVisibilityManager 
         enableEdgeToEdge()
         setupNavigation()
 
-        if (viewModel.getOnboardingStatus()) {
-            val uri = Uri.parse(getString(ru.antonlm.common.R.string.deep_link_auth))
-            navController?.safeNavigate(uri)
+        if (viewModel.isOnboardingShown()) {
+            val deepLinkString = getString(
+                when (viewModel.getUserStatus()) {
+                    UserStatus.ANONYMOUS -> ru.antonlm.common.R.string.deep_link_auth
+                    UserStatus.AUTHORIZED -> ru.antonlm.common.R.string.deep_link_main
+                }
+            )
+
+            navController?.safeNavigate(Uri.parse(deepLinkString))
+        } else {
+            // in onboarding by default
         }
     }
 

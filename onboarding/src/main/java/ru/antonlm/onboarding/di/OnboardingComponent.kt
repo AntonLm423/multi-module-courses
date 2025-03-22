@@ -19,7 +19,7 @@ import ru.antonlm.onboarding.ui.OnboardingViewModel
 internal interface OnboardingComponent {
     @Component.Builder
     interface Builder {
-        fun deps(homeComponentDeps: OnboardingComponentDeps): Builder
+        fun deps(authComponentDeps: OnboardingComponentDeps): Builder
         fun build(): OnboardingComponent
     }
 

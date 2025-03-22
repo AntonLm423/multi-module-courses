@@ -15,6 +15,7 @@ import ru.antonlm.data.data.remote.ApiService
 import ru.antonlm.data.data.remote.ApiService.Companion.BASE_URL
 import ru.antonlm.data.data.remote.ApiService.Companion.CONNECTION_TIMEOUT
 import ru.antonlm.data.data.utils.NetworkResultCallAdapterFactory
+import ru.antonlm.data.mock.ApiServiceMock
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -40,6 +41,7 @@ internal class DataModule {
         client: OkHttpClient,
         gson: Gson
     ): ApiService {
+        return ApiServiceMock()
         return Retrofit.Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
