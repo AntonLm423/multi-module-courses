@@ -1,17 +1,18 @@
-package ru.antonlm.main.ui
+package ru.antonlm.common.ui
 
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import ru.antonlm.common.R
+import ru.antonlm.common.databinding.ItemCourseBinding
 import ru.antonlm.common.extensions.loadImage
-import ru.antonlm.data.domain.models.Course
-import ru.antonlm.main.R
-import ru.antonlm.main.databinding.ItemCourseBinding
+import ru.antonlm.common.domain.Course
+import ru.antonlm.common.domain.DisplayableItem
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 fun coursesAdapterDelegate(onAddToFavorite: (course: Course) -> Unit, onRemoveFromFavorite: (courseId: Int) -> Unit) =
-    adapterDelegateViewBinding<Course, Course, ItemCourseBinding>({ layoutInflater, root ->
+    adapterDelegateViewBinding<Course, DisplayableItem, ItemCourseBinding>({ layoutInflater, root ->
         ItemCourseBinding.inflate(
             layoutInflater, root, false
         )

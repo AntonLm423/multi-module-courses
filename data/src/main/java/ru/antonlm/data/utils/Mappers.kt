@@ -2,7 +2,7 @@ package ru.antonlm.data.utils
 
 import ru.antonlm.data.data.local.models.CourseDbo
 import ru.antonlm.data.data.remote.models.CourseDto
-import ru.antonlm.data.domain.models.Course
+import ru.antonlm.common.domain.Course
 
 internal class CourseDtoToCourseMapper : Mapper<CourseDto, Course> {
     override fun map(input: CourseDto): Course {

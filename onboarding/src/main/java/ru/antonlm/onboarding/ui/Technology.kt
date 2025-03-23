@@ -1,7 +1,7 @@
 package ru.antonlm.onboarding.ui
 
 import androidx.annotation.StringRes
-import ru.antonlm.data.domain.models.DisplayableItem
+import ru.antonlm.common.domain.DisplayableItem
 
 internal data class Technology(val titleResId: Int, val angle: Angle, val bias: Bias) : DisplayableItem {
 

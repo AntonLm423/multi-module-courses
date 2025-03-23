@@ -3,7 +3,7 @@ package ru.antonlm.onboarding.ui
 import android.content.res.ColorStateList
 import android.view.View.MeasureSpec
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import ru.antonlm.data.domain.models.DisplayableItem
+import ru.antonlm.common.domain.DisplayableItem
 import ru.antonlm.onboarding.databinding.ItemTechnologyBinding
 
 

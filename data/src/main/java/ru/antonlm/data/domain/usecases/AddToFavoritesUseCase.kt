@@ -1,6 +1,6 @@
 package ru.antonlm.data.domain.usecases
 
-import ru.antonlm.data.domain.models.Course
+import ru.antonlm.common.domain.Course
 import ru.antonlm.data.domain.repository.CoursesRepository
 import javax.inject.Inject
 

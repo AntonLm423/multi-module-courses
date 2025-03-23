@@ -1,6 +1,5 @@
 package ru.antonlm.common.ui
 
-import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -18,19 +17,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import ru.antonlm.common.extensions.addSystemWindowInsetToMargin
 import ru.antonlm.common.utils.BottomNavigationViewVisibilityManager
 
 
 abstract class BaseFragment : Fragment() {
 
+    abstract val showBottomNavigationView: Boolean
     protected var viewBinding: ViewBinding? = null
-
-    /** добавлять ли инсеты, при false - контент под системными окнами (edge-to-edge) */
-    open val topInset = true
-    open val bottomInset = false
-    open val leftInset = true
-    open val rightInset = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +38,11 @@ abstract class BaseFragment : Fragment() {
         processInsets()
     }
 
+    override fun onResume() {
+        super.onResume()
+        setBottomNavigationViewVisible(isVisible = showBottomNavigationView)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         viewBinding = null
@@ -52,9 +50,6 @@ abstract class BaseFragment : Fragment() {
 
     private fun processInsets() {
         viewBinding?.root?.updatePaddingOnKeyboardVisibilityChanged()
-        if (bottomInset) {
-            viewBinding?.root?.addSystemWindowInsetToMargin(bottom = true)
-        }
     }
 
     protected fun <T : View> T.postSafe(postCallback: (T) -> Unit) {

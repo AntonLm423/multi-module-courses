@@ -2,4 +2,5 @@
 <resources>
     <string name="deep_link_auth">android-app://ru.antonlm.multimodulecourses.app/auth/</string>
     <string name="deep_link_main">android-app://ru.antonlm.multimodulecourses.app/main/</string>
+    <string name="deep_link_favorite">android-app://ru.antonlm.multimodulecourses.app/favorite/</string>
 </resources>

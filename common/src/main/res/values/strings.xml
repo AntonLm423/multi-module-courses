@@ -3,4 +3,9 @@
     <string name="error_default">Произошла непредвиденная ошибка, попробуйте повторить запрос</string>
 
     <string name="dialog_loading_title">Пожалуйста, подождите</string>
+
+    <string name="to_details">Подробнее</string>
+    <string name="price_rubble">%s ₽</string>
+
+    <string name="empty_state_title">Пока здесь ничего нет...</string>
 </resources>

@@ -1,7 +1,7 @@
 package ru.antonlm.data.domain.repository
 
 import ru.antonlm.data.domain.NetworkResult
-import ru.antonlm.data.domain.models.Course
+import ru.antonlm.common.domain.Course
 
 interface CoursesRepository {
     /**

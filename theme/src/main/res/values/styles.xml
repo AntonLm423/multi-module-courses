@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Bottom Navigation -->
+    <style name="BottomNavigationView" parent="@style/Widget.Material3.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/TextAppearance.BottomNavigationView.Active</item>
+        <item name="itemTextAppearanceActiveBoldEnabled">false</item>
+        <item name="itemActiveIndicatorStyle">@style/BottomNavigationView.Indicator</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.BottomNavigationView.Inactive</item>
+    </style>
+
+    <style name="BottomNavigationView.Indicator" parent="@style/Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/light_gray</item>
+    </style>
 
     <!-- Text -->
+    <style name="TextAppearance.BottomNavigationView.Inactive" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.BottomNavigationView.Active" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="TextAppearance.Headline" parent="@style/TextAppearance.MaterialComponents.Headline4">
         <item name="android:textColor">@color/custom_white</item>
         <item name="android:lineSpacingExtra">8sp</item>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">multi-module-courses</string>
+
+    <string name="bottom_nav_main">Главная</string>
+    <string name="bottom_nav_favorite">Избранное</string>
+    <string name="bottom_nav_profile">Аккаунт</string>
 </resources>

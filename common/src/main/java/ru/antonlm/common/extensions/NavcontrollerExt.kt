@@ -2,6 +2,7 @@ package ru.antonlm.common.extensions
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
@@ -111,6 +112,6 @@ private fun handleUnsafeNavigating(block: () -> Unit) {
     try {
         block()
     } catch (t: Throwable) {
-        // Nothing to do
+        t.printStackTrace()
     }
 }

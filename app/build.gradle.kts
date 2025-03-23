@@ -32,6 +32,7 @@ dependencies {
     implementation(project(":onboarding"))
     implementation(project(":auth"))
     implementation(project(":main"))
+    implementation(project(":favorite"))
 
     // android
     implementation(libs.androidx.core.ktx)

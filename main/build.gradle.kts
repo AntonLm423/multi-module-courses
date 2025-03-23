@@ -32,9 +32,6 @@ dependencies {
     // adapter delegates
     implementation(libs.adapterdelegates)
 
-    // blur
-    implementation(libs.blur)
-
     // dagger
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)

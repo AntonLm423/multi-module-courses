@@ -21,6 +21,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 
+    // adapter delegates
+    implementation(libs.adapterdelegates)
+
     // chrome tabs
     implementation(libs.androidx.browser)
 

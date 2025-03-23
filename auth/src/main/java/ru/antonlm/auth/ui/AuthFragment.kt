@@ -26,6 +26,8 @@ import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {
 
+    override val showBottomNavigationView = false
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<AuthViewModel> { viewModelFactory }

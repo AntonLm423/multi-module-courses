@@ -3,6 +3,8 @@ package ru.antonlm.multimodulecourses
 import android.app.Application
 import android.content.Context
 import ru.antonlm.auth.di.AuthComponentDepsStore
+import ru.antonlm.favorite.di.FavoriteComponentDeps
+import ru.antonlm.favorite.di.FavoriteComponentDepsStore
 import ru.antonlm.main.di.MainComponentDeps
 import ru.antonlm.main.di.MainComponentDepsStore
 import ru.antonlm.multimodulecourses.di.AppComponent
@@ -22,6 +24,7 @@ class App : Application() {
             OnboardingComponentDepsStore.deps = it
             AuthComponentDepsStore.deps = it
             MainComponentDepsStore.deps = it
+            FavoriteComponentDepsStore.deps = it
         }
     }
 }

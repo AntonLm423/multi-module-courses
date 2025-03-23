@@ -18,6 +18,9 @@ adapterdelegates = "4.3.2"
 pagingCommonAndroid = "3.3.6"
 pagingRuntimeKtx = "3.3.6"
 roomKtx = "2.6.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
 
 
 [libraries]
@@ -56,6 +59,9 @@ chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "ch
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

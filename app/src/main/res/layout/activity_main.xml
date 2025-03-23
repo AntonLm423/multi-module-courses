@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:theme="@style/Theme.MultiModuleCourse"
     tools:context=".ui.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerViewMain"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph_app"
-        tools:layout="@layout/fragment_onboarding" />
+        android:orientation="vertical">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerViewMain"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph_app"
+            tools:layout="@layout/fragment_onboarding" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemIconTint="?attr/colorOnPrimary"
-        app:labelVisibilityMode="unlabeled"
-        tools:ignore="RtlSymmetry" />
-
-</LinearLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            style="@style/BottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_gray"
+            app:elevation="4dp"
+            app:itemIconTint="@color/color_bottom_navigation"
+            app:itemTextColor="@color/color_bottom_navigation"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_main" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

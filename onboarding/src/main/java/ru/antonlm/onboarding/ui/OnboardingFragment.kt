@@ -11,7 +11,6 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,13 +18,15 @@ import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import ru.antonlm.common.extensions.updateMargin
 import ru.antonlm.common.ui.BaseFragment
-import ru.antonlm.data.domain.models.DisplayableItem
+import ru.antonlm.common.domain.DisplayableItem
 import ru.antonlm.onboarding.R
 import ru.antonlm.onboarding.databinding.FragmentOnboardingBinding
 import ru.antonlm.onboarding.di.OnboardingComponentViewModule
 import javax.inject.Inject
 
 class OnboardingFragment : BaseFragment() {
+
+    override val showBottomNavigationView = false
 
     private val binding get() = viewBinding as FragmentOnboardingBinding
 

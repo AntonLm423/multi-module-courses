@@ -6,25 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import ru.antonlm.common.extensions.addSystemWindowInsetToPadding
 import ru.antonlm.common.ui.BaseFragment
 import ru.antonlm.common.ui.DisplayedState
-import ru.antonlm.data.domain.NetworkResult
-import ru.antonlm.data.domain.models.Course
-import ru.antonlm.data.domain.models.DisplayableItem
+import ru.antonlm.common.ui.coursesAdapterDelegate
+import ru.antonlm.common.domain.Course
+import ru.antonlm.common.domain.DisplayableItem
+import ru.antonlm.common.ui.CourseItemDecoration
 import ru.antonlm.main.databinding.FragmentMainBinding
 import ru.antonlm.main.di.MainComponentViewModule
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
+
+    override val showBottomNavigationView = true
 
     private val binding get() = viewBinding as FragmentMainBinding
 
@@ -34,13 +34,18 @@ class MainFragment : BaseFragment() {
 
     private val mainAdapter by lazy {
         AsyncListDifferDelegationAdapter(
-            Course.diffUtil,
-            AdapterDelegatesManager<List<Course>>().addDelegate(
+            DisplayableItem.diffUtil,
+            AdapterDelegatesManager<List<DisplayableItem>>().addDelegate(
                 coursesAdapterDelegate(
                     onAddToFavorite = { viewModel.addToFavorite(it) },
                     onRemoveFromFavorite = { viewModel.removeFromFavorite(it) })
             )
         )
+    }
+
+    private companion object {
+        private const val FIRST_ITEM_MARGIN = 0
+        private const val NORMAL_ITEM_MARGIN = 16
     }
 
     override fun onAttach(context: Context) {
@@ -60,7 +65,15 @@ class MainFragment : BaseFragment() {
 
         recyclerViewMain.apply {
             adapter = mainAdapter
-            if (itemDecorationCount == 0) addItemDecoration(MainItemDecoration())
+            if (itemDecorationCount == 0) {
+                addItemDecoration(
+                    CourseItemDecoration(
+                        firstItemTopMarginDp = FIRST_ITEM_MARGIN,
+                        normalItemTopMarginDp = NORMAL_ITEM_MARGIN,
+                        lastItemBottomMarginDp = NORMAL_ITEM_MARGIN
+                    )
+                )
+            }
         }
 
         textViewSort.setOnClickListener {

@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.antonlm.common.ui.DisplayedState
-import ru.antonlm.data.domain.models.Course
+import ru.antonlm.common.domain.Course
 import ru.antonlm.data.domain.onFailure
 import ru.antonlm.data.domain.onSuccess
 import ru.antonlm.data.domain.usecases.AddToFavoritesUseCase

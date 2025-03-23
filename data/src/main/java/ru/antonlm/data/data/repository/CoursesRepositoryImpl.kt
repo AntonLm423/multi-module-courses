@@ -5,7 +5,7 @@ import ru.antonlm.data.data.remote.ApiService
 import ru.antonlm.data.domain.NetworkResult
 import ru.antonlm.data.domain.map
 import ru.antonlm.data.domain.mapList
-import ru.antonlm.data.domain.models.Course
+import ru.antonlm.common.domain.Course
 import ru.antonlm.data.domain.repository.CoursesRepository
 import ru.antonlm.data.utils.CourseDaoToCourseMapper
 import ru.antonlm.data.utils.CourseDtoToCourseMapper
@@ -43,7 +43,7 @@ class CoursesRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addToFavorites(course: Course) {
-        val courseEntity = courseToCourseDboMapper.map(course)
+        val courseEntity = courseToCourseDboMapper.map(course.copy(hasLike = true))
         favoriteDao.addToFavorites(courseEntity)
     }
 

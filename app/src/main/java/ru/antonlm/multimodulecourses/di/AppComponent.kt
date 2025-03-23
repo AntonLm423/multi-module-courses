@@ -7,9 +7,11 @@ import ru.antonlm.auth.di.AuthComponentDeps
 import ru.antonlm.data.domain.usecases.AddToFavoritesUseCase
 import ru.antonlm.data.domain.usecases.AuthUseCase
 import ru.antonlm.data.domain.usecases.GetAllCoursesUseCase
+import ru.antonlm.data.domain.usecases.GetFavoriteCoursesUseCase
 import ru.antonlm.data.domain.usecases.GetOnboardingStatusUseCase
 import ru.antonlm.data.domain.usecases.MarkOnboardingShownUseCase
 import ru.antonlm.data.domain.usecases.RemoveFromFavoritesUseCase
+import ru.antonlm.favorite.di.FavoriteComponentDeps
 import ru.antonlm.main.di.MainComponentDeps
 import ru.antonlm.multimodulecourses.ui.MainActivity
 import ru.antonlm.onboarding.di.OnboardingComponentDeps
@@ -20,7 +22,8 @@ import javax.inject.Singleton
 interface AppComponent :
     OnboardingComponentDeps,
     AuthComponentDeps,
-    MainComponentDeps {
+    MainComponentDeps,
+    FavoriteComponentDeps {
 
     @Component.Builder
     interface Builder {
@@ -41,4 +44,6 @@ interface AppComponent :
     override val addToFavoritesUseCase: AddToFavoritesUseCase
 
     override val removeFromFavoritesUseCase: RemoveFromFavoritesUseCase
+
+    override val getFavoriteCoursesUseCase: GetFavoriteCoursesUseCase
 }
