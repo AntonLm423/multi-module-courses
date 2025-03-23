@@ -9,3 +9,4 @@ class GetAllCoursesUseCase @Inject constructor(private val coursesRepository: Co
 
     suspend fun invoke(): NetworkResult<List<Course>> = coursesRepository.getCourses()
 }
+

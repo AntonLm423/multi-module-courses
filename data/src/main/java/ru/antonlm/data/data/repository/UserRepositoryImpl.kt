@@ -1,9 +1,9 @@
 package ru.antonlm.data.data.repository
 
-import ru.antonlm.data.data.models.AuthCredentials
-import ru.antonlm.data.data.models.AuthRequest
+import ru.antonlm.data.data.remote.models.AuthCredentials
+import ru.antonlm.data.data.remote.models.AuthRequest
 import ru.antonlm.common.domain.UserStatus
-import ru.antonlm.data.data.prefs.PreferenceStorage
+import ru.antonlm.data.data.local.prefs.PreferenceStorage
 import ru.antonlm.data.data.remote.ApiService
 import ru.antonlm.data.domain.NetworkResult
 import ru.antonlm.data.domain.repository.UserRepository

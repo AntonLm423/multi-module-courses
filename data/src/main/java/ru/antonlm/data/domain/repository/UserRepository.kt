@@ -1,6 +1,6 @@
 package ru.antonlm.data.domain.repository
 
-import ru.antonlm.data.data.models.AuthCredentials
+import ru.antonlm.data.data.remote.models.AuthCredentials
 import ru.antonlm.common.domain.UserStatus
 import ru.antonlm.data.domain.NetworkResult
 

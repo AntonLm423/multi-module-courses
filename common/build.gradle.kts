@@ -24,6 +24,9 @@ dependencies {
     // chrome tabs
     implementation(libs.androidx.browser)
 
+    // glide
+    implementation(libs.glide)
+
     // dagger
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)

@@ -36,8 +36,6 @@ dependencies {
     // dagger
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     kapt(libs.daggerCompiler)
     kapt(libs.dagger.android.processor)
 }

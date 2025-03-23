@@ -23,7 +23,7 @@
         android:text="@string/email_title" />
 
     <com.google.android.material.textfield.TextInputEditText
-        style="@style/TextInputEditText.Primary"
+        style="@style/TextInputEditText.Primary.Medium"
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -40,7 +40,7 @@
         android:text="@string/password_title" />
 
     <com.google.android.material.textfield.TextInputEditText
-        style="@style/TextInputEditText.Primary"
+        style="@style/TextInputEditText.Primary.Medium"
         android:layout_width="match_parent"
         android:id="@+id/editTextPassword"
         android:layout_height="40dp"

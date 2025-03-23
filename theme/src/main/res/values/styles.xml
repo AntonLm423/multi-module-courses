@@ -12,8 +12,11 @@
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
-    <style name="TextAppearance.ButtonSmall" parent="@style/TextAppearance.Material3.BodySmall">
+    <style name="TextAppearance.ButtonSmall" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:textSize">12sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/custom_white</item>
         <item name="android:lineSpacingExtra">3sp</item>
     </style>
@@ -30,12 +33,18 @@
     <style name="TextInputEditText" />
 
     <style name="TextInputEditText.Primary">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
         <item name="android:textAppearance">@style/TextAppearance.Material3.BodyMedium</item>
-        <item name="android:layout_marginTop">8dp</item>
         <item name="android:textColorHint">@color/custom_white_50</item>
         <item name="android:textColor">@color/custom_white</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:backgroundTint">@color/dark_gray</item>
+    </style>
+
+    <style name="TextInputEditText.Primary.Medium" parent="TextInputEditText.Primary">
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="TextInputEditText.Primary.Large" parent="TextInputEditText.Primary">
+        <item name="android:layout_height">56dp</item>
     </style>
 </resources>

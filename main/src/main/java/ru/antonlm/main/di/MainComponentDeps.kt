@@ -2,10 +2,15 @@ package ru.antonlm.main.di
 
 import androidx.annotation.RestrictTo
 import androidx.lifecycle.ViewModel
+import ru.antonlm.data.domain.usecases.AddToFavoritesUseCase
+import ru.antonlm.data.domain.usecases.GetAllCoursesUseCase
+import ru.antonlm.data.domain.usecases.RemoveFromFavoritesUseCase
 import kotlin.properties.Delegates
 
 interface MainComponentDeps {
-
+    val getAllCoursesUseCase: GetAllCoursesUseCase
+    val addToFavoritesUseCase: AddToFavoritesUseCase
+    val removeFromFavoritesUseCase: RemoveFromFavoritesUseCase
 }
 
 interface MainComponentDepsProvider {
@@ -20,5 +25,5 @@ object MainComponentDepsStore : MainComponentDepsProvider {
 }
 
 internal class MainComponentViewModule : ViewModel() {
-    val onboardingComponent = DaggerMainComponent.builder().deps(MainComponentDepsProvider.deps).build()
+    val mainComponent = DaggerMainComponent.builder().deps(MainComponentDepsProvider.deps).build()
 }

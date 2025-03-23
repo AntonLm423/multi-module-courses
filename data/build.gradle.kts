@@ -17,6 +17,15 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    // room
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+    kapt (libs.androidx.room.compiler)
+
+    // chucker
+    implementation(libs.chucker)
+    testImplementation(libs.chucker.noop)
+
     // dagger
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)

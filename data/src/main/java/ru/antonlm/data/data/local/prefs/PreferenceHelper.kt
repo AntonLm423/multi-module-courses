@@ -1,4 +1,4 @@
-package ru.antonlm.data.data.prefs
+package ru.antonlm.data.data.local.prefs
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -3,9 +3,10 @@ package ru.antonlm.data.data.remote
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import ru.antonlm.data.data.models.AuthCredentials
-import ru.antonlm.data.data.models.AuthRequest
-import ru.antonlm.data.data.models.CourseDto
+import ru.antonlm.data.data.remote.models.AuthCredentials
+import ru.antonlm.data.data.remote.models.AuthRequest
+import ru.antonlm.data.data.remote.models.CourseDto
+import ru.antonlm.data.data.remote.models.CoursesResponse
 import ru.antonlm.data.domain.NetworkResult
 
  interface ApiService {
@@ -18,7 +19,7 @@ import ru.antonlm.data.domain.NetworkResult
 
     // TODO: Example api call
     @GET("courses/all")
-    suspend fun getAllCourses(): NetworkResult<List<CourseDto>>
+    suspend fun getAllCourses(): NetworkResult<CoursesResponse>
 
     // TODO: Example api call
     @POST("user/auth")

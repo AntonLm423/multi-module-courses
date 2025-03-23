@@ -1,6 +1,6 @@
 package ru.antonlm.data.domain.usecases
 
-import ru.antonlm.data.data.prefs.PreferenceStorage
+import ru.antonlm.data.data.local.prefs.PreferenceStorage
 import javax.inject.Inject
 
 class GetOnboardingStatusUseCase @Inject constructor(private val preferenceStorage: PreferenceStorage) {

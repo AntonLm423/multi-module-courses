@@ -1,3 +1,3 @@
-package ru.antonlm.data.data.models
+package ru.antonlm.data.data.remote.models
 
 class AuthCredentials(val token: String, val refreshToken: String)

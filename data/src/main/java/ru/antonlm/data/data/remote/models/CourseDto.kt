@@ -1,4 +1,6 @@
-package ru.antonlm.data.data.models
+package ru.antonlm.data.data.remote.models
+
+import java.util.Date
 
 /**
  * @param id - идентификатор курса
@@ -14,9 +16,9 @@ class CourseDto(
     val hasLike: Boolean,
     val id: Int,
     val price: String,
-    val publishDate: String,
+    val publishDate: Date,
     val rate: String,
-    val startDate: String,
+    val startDate: Date,
     val text: String,
     val title: String
 )

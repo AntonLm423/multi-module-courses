@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_hint">Search courses…</string>
+
+    <string name="sort_default">По умолчанию</string>
+    <string name="sort_date_descending">По дате добавления</string>
+    <string name="to_details">Подробнее</string>
+
+    <string name="price_rubble">%s ₽</string>
+</resources>

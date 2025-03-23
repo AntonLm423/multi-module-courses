@@ -66,8 +66,8 @@ class AuthFragment : BaseFragment() {
     }
 
     override fun onSubscribeViewModel() {
-        viewModel.authResult.observe { result ->
-            when (result) {
+        viewModel.authResult.observe { state ->
+            when (state) {
                 is DisplayedState.Success -> {
                     dismissLoadingDialog()
                     navigateToMain()
@@ -79,7 +79,7 @@ class AuthFragment : BaseFragment() {
 
                 is DisplayedState.Error -> {
                     dismissLoadingDialog()
-                    Toast.makeText(requireContext(), getString(result.displayedMessageResId), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(state.displayedMessageResId), Toast.LENGTH_SHORT).show()
                 }
             }
         }

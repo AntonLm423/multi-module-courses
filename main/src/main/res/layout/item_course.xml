@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_rounded_16dp"
+    android:backgroundTint="@color/dark_gray"
+    android:elevation="0dp">
+
+    <ImageView
+        android:id="@+id/imageViewPreview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintDimensionRatio="H,328:114"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonFavorite"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_selectable_circle"
+        android:padding="6dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPreview"
+        app:layout_constraintEnd_toEndOf="@id/imageViewPreview"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@id/imageViewPreview"
+        app:layout_constraintTop_toTopOf="@id/imageViewPreview"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/textViewRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_rounded_12dp"
+        android:backgroundTint="@color/glass"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:textColor="@color/custom_white"
+        android:drawablePadding="1dp"
+        app:drawableStartCompat="@drawable/ic_star"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPreview"
+        app:layout_constraintEnd_toEndOf="@id/imageViewPreview"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/imageViewPreview"
+        app:layout_constraintTop_toTopOf="@id/imageViewPreview"
+        app:layout_constraintVertical_bias="1"
+        tools:text="4.9" />
+
+    <TextView
+        android:id="@+id/textViewPublishDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/bg_rounded_12dp"
+        android:backgroundTint="@color/glass"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:textColor="@color/custom_white"
+        android:drawablePadding="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPreview"
+        app:layout_constraintEnd_toEndOf="@id/imageViewPreview"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/textViewRating"
+        app:layout_constraintTop_toTopOf="@id/imageViewPreview"
+        app:layout_constraintVertical_bias="1"
+        tools:text="22 Мая 2024" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/custom_white"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewPreview"
+        tools:text="Java разработчик с нуля" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0.7"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="@color/custom_white"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_goneMarginTop="12dp"
+        tools:text="Освойте backend-разработку и программирование на Java, фреймворки Spring и Maven," />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/custom_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+        tools:text="999 ₽" />
+
+    <TextView
+        android:id="@+id/textViewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/to_details"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/green"
+        android:textSize="12sp"
+        app:drawableEndCompat="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/textViewPrice"
+        app:layout_constraintTop_toBottomOf="@id/textViewDescription" />
+</androidx.constraintlayout.widget.ConstraintLayout>
