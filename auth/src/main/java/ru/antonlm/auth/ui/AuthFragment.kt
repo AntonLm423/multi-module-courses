@@ -3,8 +3,10 @@ package ru.antonlm.auth.ui
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import ru.antonlm.auth.R
 import ru.antonlm.auth.databinding.FragmentAuthBinding
@@ -20,8 +23,6 @@ import ru.antonlm.auth.di.AuthComponentViewModule
 import ru.antonlm.common.extensions.safeNavigate
 import ru.antonlm.common.ui.BaseFragment
 import ru.antonlm.common.ui.DisplayedState
-import ru.antonlm.common.utils.BottomNavigationViewVisibilityManager
-import ru.antonlm.data.domain.NetworkResult
 import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {
@@ -47,12 +48,19 @@ class AuthFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun initOperations(savedInstanceState: Bundle?) {
-        (requireActivity() as? BottomNavigationViewVisibilityManager)?.setBottomNavigationViewVisible(isVisible = false)
-    }
-
     override fun onSetupLayout(savedInstanceState: Bundle?) = with(binding) {
         setupToRegistrationText()
+
+        val textChangeListener = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.validateInput(editTextEmail.text.toString(), editTextPassword.text.toString())
+            }
+        }
+
+        editTextEmail.addTextChangedListener(textChangeListener)
+        editTextPassword.addTextChangedListener(textChangeListener)
 
         buttonContinue.setOnClickListener {
             viewModel.auth(email = editTextEmail.text.toString(), password = editTextPassword.text.toString())
@@ -68,6 +76,10 @@ class AuthFragment : BaseFragment() {
     }
 
     override fun onSubscribeViewModel() {
+        viewModel.isLoginButtonEnabled.observe { isEnabled ->
+            binding.buttonContinue.alpha = if (isEnabled) 1f else 0.7f
+        }
+
         viewModel.authResult.observe { state ->
             when (state) {
                 is DisplayedState.Success -> {
@@ -81,15 +93,19 @@ class AuthFragment : BaseFragment() {
 
                 is DisplayedState.Error -> {
                     dismissLoadingDialog()
-                    Toast.makeText(requireContext(), getString(state.displayedMessageResId), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        state.displayedMessage ?: getString(state.displayedMessageResId),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
-
     }
 
     private fun navigateToMain() {
         val deeplink = getString(ru.antonlm.common.R.string.deep_link_main)
+        findNavController().popBackStack(R.id.authFragment, true)
         findNavController().safeNavigate(Uri.parse(deeplink))
     }
 

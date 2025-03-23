@@ -11,6 +11,7 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import ru.antonlm.common.extensions.updateMargin
 import ru.antonlm.common.ui.BaseFragment
 import ru.antonlm.common.domain.DisplayableItem
+import ru.antonlm.common.extensions.safeNavigate
 import ru.antonlm.onboarding.R
 import ru.antonlm.onboarding.databinding.FragmentOnboardingBinding
 import ru.antonlm.onboarding.di.OnboardingComponentViewModule
@@ -94,8 +96,8 @@ class OnboardingFragment : BaseFragment() {
 
     private fun navigateToAuth() {
         val link = getString(ru.antonlm.common.R.string.deep_link_auth)
-        val uri = Uri.parse(link)
-        findNavController().navigate(uri)
+        findNavController().popBackStack(R.id.onboardingFragment, true)
+        findNavController().safeNavigate(Uri.parse(link))
     }
 
     private companion object {

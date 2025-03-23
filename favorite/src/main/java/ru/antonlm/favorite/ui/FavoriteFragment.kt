@@ -45,6 +45,7 @@ class FavoriteFragment : BaseFragment() {
     }
 
     private companion object {
+        private const val FIRST_ITEM_MARGIN = 0
         private const val ITEM_MARGIN = 16
     }
 
@@ -74,7 +75,7 @@ class FavoriteFragment : BaseFragment() {
             if (itemDecorationCount == 0) {
                 addItemDecoration(
                     CourseItemDecoration(
-                        firstItemTopMarginDp = ITEM_MARGIN,
+                        firstItemTopMarginDp = FIRST_ITEM_MARGIN,
                         normalItemTopMarginDp = ITEM_MARGIN,
                         lastItemBottomMarginDp = ITEM_MARGIN
                     )

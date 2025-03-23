@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import ru.antonlm.auth.R
 import ru.antonlm.common.ui.DisplayedState
 import ru.antonlm.data.domain.onFailure
 import ru.antonlm.data.domain.onSuccess
@@ -20,8 +21,22 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
     private val _authResult = MutableLiveData<DisplayedState<Nothing>>()
     val authResult: LiveData<DisplayedState<Nothing>> = _authResult
 
+    private val _isLoginButtonEnabled = MutableLiveData<Boolean>(false)
+    val isLoginButtonEnabled: LiveData<Boolean> = _isLoginButtonEnabled
+
+    fun validateInput(email: String, password: String) {
+        val isEmailValid = isValidEmail(email)
+        val isPasswordFilled = password.isNotBlank()
+        _isLoginButtonEnabled.value = isEmailValid && isPasswordFilled
+    }
+
     fun auth(email: String, password: String) {
         if (email.isNotBlank() && password.isNotBlank()) {
+            if (!isValidEmail(email)) {
+                _authResult.value = DisplayedState.Error(displayedMessageResId = R.string.error_incorrect_email)
+                return
+            }
+
             _authResult.value = DisplayedState.Loading()
 
             viewModelScope.launch {
@@ -36,7 +51,14 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                     }
                 }
             }
+        } else {
+            _authResult.value = DisplayedState.Error(displayedMessageResId = R.string.error_empty_fields)
         }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+        return email.matches(emailPattern.toRegex())
     }
 
     // just example

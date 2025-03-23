@@ -15,6 +15,7 @@
         <Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
             android:title="@string/favorite_title"
             android:background="@color/dark"
             android:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge"

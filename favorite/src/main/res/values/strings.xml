@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="favorite_title">Избранное</string>
+
+    <string name="empty_state_title">Вы еще не добавили ни один курс в избранное...</string>
 </resources>

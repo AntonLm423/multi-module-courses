@@ -31,11 +31,18 @@
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
-    <style name="TextAppearance.ButtonSmall" parent="TextAppearance.Material3.TitleMedium">
-        <item name="android:textSize">12sp</item>
-        <item name="fontFamily">sans-serif</item>
-        <item name="android:fontFamily">sans-serif</item>
+    <style name="TextAppearance.Button" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/custom_white</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="TextAppearance.ButtonSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-condensed-medium</item>
         <item name="android:textColor">@color/custom_white</item>
         <item name="android:lineSpacingExtra">3sp</item>
     </style>

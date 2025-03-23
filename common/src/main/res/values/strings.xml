@@ -6,6 +6,4 @@
 
     <string name="to_details">Подробнее</string>
     <string name="price_rubble">%s ₽</string>
-
-    <string name="empty_state_title">Пока здесь ничего нет...</string>
 </resources>

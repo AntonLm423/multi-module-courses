@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.fragment.findNavController
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import ru.antonlm.common.extensions.addSystemWindowInsetToPadding
@@ -76,7 +77,7 @@ class MainFragment : BaseFragment() {
             }
         }
 
-        textViewSort.setOnClickListener {
+        layoutSort.setOnClickListener {
             viewModel.changeSortType()
         }
     }
@@ -88,7 +89,7 @@ class MainFragment : BaseFragment() {
         }
 
         viewModel.courses.observe { state ->
-            binding.textViewSort.isEnabled = state !is DisplayedState.Loading
+            binding.layoutSort.isEnabled = state !is DisplayedState.Loading
 
             when (state) {
                 is DisplayedState.Success -> {

@@ -128,10 +128,11 @@ abstract class BaseFragment : Fragment() {
      */
     var onUpdatePaddingAction: ((Boolean) -> Unit?)? = null
 
-    fun View.updatePaddingOnKeyboardVisibilityChanged() {
+    /* Method hide bottom navigation view when keyboard is open */
+    private fun View.updatePaddingOnKeyboardVisibilityChanged() {
         addKeyboardInsetListener(this) { isOpen: Boolean, height: Int ->
             runCatching {
-                setBottomNavigationViewVisible(!isOpen)
+                setBottomNavigationViewVisible(!isOpen && showBottomNavigationView)
                 onUpdatePaddingAction?.invoke(isOpen)
 
                 view?.updatePadding(
@@ -145,7 +146,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    fun addKeyboardInsetListener(rootView: View, keyboardCallback: (visible: Boolean, Int) -> Unit) {
+    private fun addKeyboardInsetListener(rootView: View, keyboardCallback: (visible: Boolean, Int) -> Unit) {
         rootView.postSafe {
             var isKeyboardVisible = false
 

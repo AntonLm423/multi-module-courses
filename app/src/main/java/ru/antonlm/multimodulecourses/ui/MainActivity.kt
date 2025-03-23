@@ -2,8 +2,6 @@ package ru.antonlm.multimodulecourses.ui
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +11,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import ru.antonlm.common.domain.UserStatus
 import ru.antonlm.common.extensions.addSystemWindowInsetToPadding
@@ -54,22 +51,33 @@ class MainActivity : AppCompatActivity(), BottomNavigationViewVisibilityManager 
      * Navigation
      */
     private fun setupNavigation() {
-        val navView: BottomNavigationView = binding.bottomNavigationView
+        val navView = binding.bottomNavigationView
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerViewMain) as NavHostFragment
+
         navController = navHostFragment.findNavController().also {
             navView.setupWithNavController(it)
         }
 
-        binding.bottomNavigationView.setOnItemSelectedListener(onItemSelectedListener)
+        navView.setOnItemSelectedListener(onItemSelectedListener)
 
         if (viewModel.isOnboardingShown()) {
-            val deepLinkString = getString(
-                when (viewModel.getUserStatus()) {
-                    UserStatus.ANONYMOUS -> ru.antonlm.common.R.string.deep_link_auth
-                    UserStatus.AUTHORIZED -> ru.antonlm.common.R.string.deep_link_main
+
+            val navOptionsBuilder = NavOptions.Builder()
+
+            val deepLinkString = when (viewModel.getUserStatus()) {
+                UserStatus.ANONYMOUS -> {
+                    navOptionsBuilder.setPopUpTo(ru.antonlm.auth.R.id.authFragment, true)
+                    getString(ru.antonlm.common.R.string.deep_link_auth)
                 }
-            )
-            navController?.safeNavigate(Uri.parse(deepLinkString))
+
+                UserStatus.AUTHORIZED -> {
+                    navOptionsBuilder.setPopUpTo(ru.antonlm.onboarding.R.id.onboardingFragment, true)
+                    getString(ru.antonlm.common.R.string.deep_link_main)
+                }
+            }
+
+            navController?.safeNavigate(Uri.parse(deepLinkString), navOptionsBuilder.build())
         } else {
             // in onboarding by default
         }
